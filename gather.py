@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup
 import re
 
 def Translate(Word):
-    Url = 'https://dic.b-amooz.com/en/dictionary/w?word=' + Word
+    Url = 'https://dic.b-amooz.com/en/dictionary/w?word=' + Word # handle URL to request
+    word_list = [] # To store meanings 
     # Load the whole webpage
     page = requests.get(Url)
     soup = BeautifulSoup(page.text, 'html.parser')
@@ -17,8 +18,10 @@ def Translate(Word):
         meaning = re.sub(r'<.+?>', ' ', meaning) # remove tags and spans
         meaning = re.sub(r'\d+', ' ', meaning) # remove numbers from start
         meaning = re.sub('\.', ' ', meaning) # remove dot from start
+        meaning = re.sub(r'\u200c', ' ', meaning) # remove half space 
         meaning = meaning.strip() # remove any extra left whitespaces
-        print(meaning)
+        # print(meaning)
+        word_list.append(meaning)
 
-
+    return word_list
 # Translate('love')
