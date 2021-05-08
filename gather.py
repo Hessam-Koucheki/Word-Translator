@@ -24,4 +24,3 @@ def Translate(Word):
         word_list.append(meaning)
 
     return word_list
-# Translate('love')

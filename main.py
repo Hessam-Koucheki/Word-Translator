@@ -1,13 +1,13 @@
 import gather
 
-existing_words = []
-
 # ReLoad All Existing words in file to prevent ReTranslate
+existing_words = []
 with open('WordLists.txt', 'r') as file:
     lines = file.readlines()
     for line in lines:
         if not line.startswith('|'):
             existing_words.append(line[:-3].strip())
+file.close()
 
 # Main Loop to input Words to be translated
 with open('WordLists.txt', 'a+') as file:    
