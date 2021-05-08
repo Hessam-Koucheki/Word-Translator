@@ -20,7 +20,7 @@ def Translate(Word):
         meaning = re.sub('\.', ' ', meaning) # remove dot from start
         meaning = re.sub(r'\u200c', ' ', meaning) # remove half space 
         meaning = meaning.strip() # remove any extra left whitespaces
-        # print(meaning)
+        print(meaning)
         word_list.append(meaning)
 
     return word_list

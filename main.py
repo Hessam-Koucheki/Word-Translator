@@ -22,11 +22,11 @@ with open('WordLists.txt', 'a+') as file:
         # Request To TRANSLATE Word
         tmp_meanings = gather.Translate(word_input)
         # Store In a FILE
-        file.writelines(word_input + ' :' + '\n') # Write WORD
+        file.writelines(word_input.capitalize() + ' :' + '\n') # Write WORD
         for this_mean in tmp_meanings: # Write MEANINGS
             file.writelines('||\t' + this_mean + '\n')
         file.writelines('|-------------------------------\n')
-        existing_words.append(word_input.strip()) # Add to Existing List to avoid duplication
+        existing_words.append(word_input.strip().capitalize()) # Add to Existing List to avoid duplication
 
 
 file.close()
