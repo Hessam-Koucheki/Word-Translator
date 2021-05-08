@@ -20,13 +20,14 @@ with open('WordLists.txt', 'a+') as file:
             print(word_input.upper() + ' exists!!')
             continue
         # Request To TRANSLATE Word
-        tmp_meanings = gather.Translate(word_input)
-        # Store In a FILE
-        file.writelines(word_input.capitalize() + ' :' + '\n') # Write WORD
-        for this_mean in tmp_meanings: # Write MEANINGS
-            file.writelines('||\t' + this_mean + '\n')
-        file.writelines('|-------------------------------\n')
-        existing_words.append(word_input.strip().capitalize()) # Add to Existing List to avoid duplication
-
+        meanings = gather.Translate(word_input)
+        if meanings:
+            # Store In a FILE
+            file.writelines(word_input.capitalize() + ' :' + '\n') # Write WORD
+            for this_mean in meanings: # Write MEANINGS
+                file.writelines('||\t' + this_mean + '\n')
+            file.writelines('|-------------------------------\n')
+            existing_words.append(word_input.strip().capitalize()) # Add to Existing List to avoid duplication
+        file.flush()
 
 file.close()

@@ -17,7 +17,7 @@ def Translate(Word):
         meaning = re.sub(r'\s+', ' ', meaning) # remove whitespaces
         meaning = re.sub(r'<.+?>', ' ', meaning) # remove tags and spans
         meaning = re.sub(r'\d+', ' ', meaning) # remove numbers from start
-        meaning = re.sub('\.', ' ', meaning) # remove dot from start
+        meaning = re.sub('\.', '', meaning) # remove dot from start
         meaning = re.sub(r'\u200c', ' ', meaning) # remove half space 
         meaning = meaning.strip() # remove any extra left whitespaces
         print(meaning)
