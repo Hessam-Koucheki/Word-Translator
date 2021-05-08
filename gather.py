@@ -13,7 +13,10 @@ meanings = soup.find_all('a', attrs={'class' : 'quick-access-items'} )
 
 for meaning in meanings:
     # print(str(meaning)) 
-    print(re.sub(r'\s+', ' ', str(meaning)))
+    meaning = re.sub(r'\s+', ' ', str(meaning))
+    meaning = re.sub(r'<.+?>', ' ', meaning)
+    meaning = meaning.strip()
+    print(meaning)
     print('------------------')
 
 # print(soup)
