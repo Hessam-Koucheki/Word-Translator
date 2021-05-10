@@ -19,7 +19,7 @@ with open('WordLists.txt', 'a+') as file:
             break
         elif word_input == '/clear':
             open('WordLists.txt', 'w').close()
-            system('clear')
+            system('clear || cls')
             print('All file contents have been erased!!')
 
         elif word_input in existing_words:
