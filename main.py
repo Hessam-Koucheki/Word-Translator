@@ -1,5 +1,5 @@
 import gather
-
+from os import system
 # ReLoad All Existing words in file to prevent ReTranslate
 existing_words = []
 with open('WordLists.txt', 'r') as file:
@@ -10,7 +10,7 @@ with open('WordLists.txt', 'r') as file:
 file.close()
 
 # Main Loop to input Words to be translated
-with open('WordLists.txt', 'a+') as file:    
+with open('WordLists.txt', 'a+') as file:
     while True:
         # Input WORD
         print('|----------------------------------------')
@@ -19,7 +19,9 @@ with open('WordLists.txt', 'a+') as file:
             break
         elif word_input == '/clear':
             open('WordLists.txt', 'w').close()
+            system('clear')
             print('All file contents have been erased!!')
+
         elif word_input in existing_words:
             print(word_input.upper() + ' exists!!')
             continue
