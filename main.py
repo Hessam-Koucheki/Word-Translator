@@ -26,7 +26,7 @@ with open('WordLists.txt', 'a+') as file:
             file.writelines(word_input.capitalize() + ' :' + '\n') # Write WORD
             for this_mean in meanings: # Write MEANINGS
                 file.writelines('||\t' + this_mean + '\n')
-            file.writelines('|-------------------------------\n')
+            file.writelines('|--------------------------------------------------------------\n\n')
             existing_words.append(word_input.strip().capitalize()) # Add to Existing List to avoid duplication
         file.flush()
 
