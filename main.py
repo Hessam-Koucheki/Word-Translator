@@ -13,9 +13,13 @@ file.close()
 with open('WordLists.txt', 'a+') as file:    
     while True:
         # Input WORD
+        print('|----------------------------------------')
         word_input = input('Enter A Word To Translate: ').strip()
         if word_input == '/exit':
             break
+        elif word_input == '/clear':
+            open('WordLists.txt', 'w').close()
+            print('All file contents have been erased!!')
         elif word_input in existing_words:
             print(word_input.upper() + ' exists!!')
             continue
