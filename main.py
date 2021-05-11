@@ -22,6 +22,7 @@ with open(wordlist_address, 'a+') as file:
         elif word_input == '/clear':
             open(wordlist_address, 'w').close()
             system('clear || cls')
+            existing_words = []
             print('All file contents have been erased!!')
 
         elif word_input in existing_words:
