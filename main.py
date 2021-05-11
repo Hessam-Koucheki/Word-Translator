@@ -1,7 +1,7 @@
 import gather
 from os import system
-# wordlist_address = '/mnt/g/Codes/Python/Trasnlator/WordLists.txt'
-wordlist_address = '/mnt/c/Users/Hessam/Desktop/WordLists.txt'
+wordlist_address = '/mnt/c/Users/Hessam/Desktop/WordLists.txt' # wsl format
+notepad_command = 'notepad.exe ' + r'C:\\Users\\Hessam\\Desktop\\WordLists.txt' # windows format
 
 # ReLoad All Existing words in file to prevent ReTranslate
 existing_words = []
@@ -31,8 +31,7 @@ with open(wordlist_address, 'a+') as file:
             existing_words = []
             print('All file contents have been erased!!')
         elif word_input == '/open':
-            command = 'notepad.exe ' + r'C:\\Users\\Hessam\\Desktop\\WordLists.txt'
-            system(command)
+            system(notepad_command)
         elif word_input in existing_words:
             print(word_input.upper() + ' exists!!')
             continue
