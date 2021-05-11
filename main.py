@@ -4,12 +4,17 @@ wordlist_address = '/mnt/g/Codes/Python/Trasnlator/WordLists.txt'
 
 # ReLoad All Existing words in file to prevent ReTranslate
 existing_words = []
-with open(wordlist_address, 'r') as file:
-    lines = file.readlines()
-    for line in lines:
-        if not line.startswith('|'):
-            existing_words.append(line[:-3].strip())
-file.close()
+try:
+    with open(wordlist_address, 'r+') as file:
+        lines = file.readlines()
+        for line in lines:
+            if not line.startswith('|'):
+                existing_words.append(line[:-3].strip())
+    file.close()
+except:
+    print('No File Already Exists, Creating...')
+    open(wordlist_address, 'w+').close()
+
 
 # Main Loop to input Words to be translated
 with open(wordlist_address, 'a+') as file:
@@ -20,7 +25,7 @@ with open(wordlist_address, 'a+') as file:
         if word_input == '/exit':
             break
         elif word_input == '/clear':
-            open(wordlist_address, 'w').close()
+            open(wordlist_address, 'w+').close()
             system('clear || cls')
             existing_words = []
             print('All file contents have been erased!!')
