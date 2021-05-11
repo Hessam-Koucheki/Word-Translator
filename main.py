@@ -1,8 +1,10 @@
 import gather
 from os import system
+wordlist_address = '/mnt/g/Codes/Python/Trasnlator/WordLists.txt'
+
 # ReLoad All Existing words in file to prevent ReTranslate
 existing_words = []
-with open('WordLists.txt', 'r') as file:
+with open(wordlist_address, 'r') as file:
     lines = file.readlines()
     for line in lines:
         if not line.startswith('|'):
@@ -10,7 +12,7 @@ with open('WordLists.txt', 'r') as file:
 file.close()
 
 # Main Loop to input Words to be translated
-with open('WordLists.txt', 'a+') as file:
+with open(wordlist_address, 'a+') as file:
     while True:
         # Input WORD
         print('|----------------------------------------')
@@ -18,7 +20,7 @@ with open('WordLists.txt', 'a+') as file:
         if word_input == '/exit':
             break
         elif word_input == '/clear':
-            open('WordLists.txt', 'w').close()
+            open(wordlist_address, 'w').close()
             system('clear || cls')
             print('All file contents have been erased!!')
 
