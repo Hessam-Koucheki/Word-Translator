@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(454, 698)
+        MainWindow.resize(454, 748)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.search_button = QtWidgets.QPushButton(self.centralwidget)
@@ -26,6 +26,9 @@ class Ui_MainWindow(object):
         self.user_input = QtWidgets.QLineEdit(self.centralwidget)
         self.user_input.setGeometry(QtCore.QRect(70, 508, 311, 71))
         self.user_input.setObjectName("user_input")
+        self.log = QtWidgets.QTextBrowser(self.centralwidget)
+        self.log.setGeometry(QtCore.QRect(10, 650, 431, 41))
+        self.log.setObjectName("log")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 454, 26))
@@ -36,6 +39,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
+        self.search_button.clicked.connect(self.search_button.showMaximized)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
