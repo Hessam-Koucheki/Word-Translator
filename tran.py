@@ -11,7 +11,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import gather
 from os import system
-from codecs import encode
 
 wordlist_address_linux = '/mnt/c/Users/Hessam/Desktop/WordLists.txt' # wsl format
 wordlist_address_windows = r'C:\\Users\\Hessam\\Desktop\\WordLists.txt' # windows format
@@ -20,7 +19,7 @@ wordlist_address_windows = r'C:\\Users\\Hessam\\Desktop\\WordLists.txt' # window
 # ReLoad All Existing words in file to prevent ReTranslate
 existing_words = []
 try:
-    with open(wordlist_address_windows, 'r+') as file:
+    with open(wordlist_address_windows, 'r+', encoding='utf-8') as file:
         lines = file.readlines()
         for line in lines:
             if not line.startswith('|'):
@@ -28,7 +27,7 @@ try:
     file.close()
 except:
     print('No File Already Exists, Creating...')
-    open(wordlist_address_windows, 'w+').close()
+    open(wordlist_address_windows, 'w+', encoding='utf-8').close()
 
 
 
