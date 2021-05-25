@@ -9,7 +9,7 @@ def check_existing():
             lines = file.readlines()
             for line in lines:
                 if not line.startswith('|'):
-                    existing_words.append(line[:-3].strip())
+                    existing_words.append(line[:-3].strip().lower())
         file.close()
     except:
         print('No File Already Exists, Creating...')
