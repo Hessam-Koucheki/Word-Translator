@@ -88,6 +88,7 @@ class Ui_MainWindow(object):
         self.terminal_output.clear()
         self.log.setText('File Cleared!!')
         existing_words = []
+        self.user_input.setFocus()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
