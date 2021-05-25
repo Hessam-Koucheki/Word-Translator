@@ -12,7 +12,7 @@ import Check_existing
 from PyQt5 import QtCore, QtWidgets
 import Translate
 from addresses import *
-existing_words = Check_existing()
+existing_words = Check_existing.check_existing()
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -54,8 +54,14 @@ class Ui_MainWindow(object):
         current_word = self.user_input.text()
         current_meanings = Translate.Translate(current_word)
 
+        if current_word.lower() in existing_words:
+            self.log.setText(current_word.upper() + ' exists!!')
+            self.terminal_output.clear()
+            self.user_input.clear()
+            return
+
         # self.terminal_output.setText(current_meanings)
-        if current_meanings:
+        elif current_meanings:
             with open(wordlist_address_windows, 'a+', encoding='utf-8') as file:
                 # Store In a FILE & Show in the Box
                 self.terminal_output.setText(current_word.capitalize() + ' :' + '\n') # Show WORD
@@ -71,7 +77,7 @@ class Ui_MainWindow(object):
                 self.terminal_output.append('|-----------------------------------------------------------\n\n')
                 file.writelines('|-----------------------------------------------------------\n\n')
 
-                existing_words.append(current_word.strip().capitalize()) # Add to Existing List to avoid duplication
+                existing_words.append(current_word.strip()) # Add to Existing List to avoid duplication
                 file.flush()
         self.user_input.clear()
         self.log.clear()
@@ -81,6 +87,7 @@ class Ui_MainWindow(object):
         open(wordlist_address_windows, 'w+').close()
         self.terminal_output.clear()
         self.log.setText('File Cleared!!')
+        existing_words = []
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
