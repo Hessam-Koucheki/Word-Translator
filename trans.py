@@ -10,7 +10,6 @@
 
 from PyQt5 import QtCore, QtWidgets
 import Translate
-from clear_file import clear_file
 from addresses import *
 existing_words = []
 
@@ -46,7 +45,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.search_button.clicked.connect(self.search_clicked)
-        self.clear_button.clicked.connect(clear_file)
+        self.clear_button.clicked.connect(self.clear_file)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def search_clicked(self):
@@ -73,6 +72,7 @@ class Ui_MainWindow(object):
                 existing_words.append(current_word.strip().capitalize()) # Add to Existing List to avoid duplication
                 file.flush()
         self.user_input.clear()
+        self.log.clear()
         self.user_input.setFocus()
 
     def clear_file(self):
