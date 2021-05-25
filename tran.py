@@ -43,6 +43,7 @@ class Ui_MainWindow(object):
 
     def search_clicked(self):
         print('Hello World!!')
+        print(self.user_input.text())
 
 
 
