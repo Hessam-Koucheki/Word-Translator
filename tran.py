@@ -37,10 +37,14 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
         self.retranslateUi(MainWindow)
-        self.search_button.clicked.connect(self.search_button.showMaximized)
+        self.search_button.clicked.connect(self.search_clicked)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def search_clicked(self):
+        print('Hello World!!')
+
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
