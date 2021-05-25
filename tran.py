@@ -11,13 +11,16 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import gather
 from os import system
-wordlist_address = '/mnt/c/Users/Hessam/Desktop/WordLists.txt' # wsl format
-notepad_command = 'notepad.exe ' + r'C:\\Users\\Hessam\\Desktop\\WordLists.txt' # windows format
+from codecs import encode
+
+wordlist_address_linux = '/mnt/c/Users/Hessam/Desktop/WordLists.txt' # wsl format
+wordlist_address_windows = r'C:\\Users\\Hessam\\Desktop\\WordLists.txt' # windows format
+# wordlist_address_windows = 'notepad.exe ' + r'C:\\Users\\Hessam\\Desktop\\WordLists.txt' # windows format
 
 # ReLoad All Existing words in file to prevent ReTranslate
 existing_words = []
 try:
-    with open(wordlist_address, 'r+') as file:
+    with open(wordlist_address_windows, 'r+') as file:
         lines = file.readlines()
         for line in lines:
             if not line.startswith('|'):
@@ -25,7 +28,7 @@ try:
     file.close()
 except:
     print('No File Already Exists, Creating...')
-    open(wordlist_address, 'w+').close()
+    open(wordlist_address_windows, 'w+').close()
 
 
 
@@ -60,9 +63,28 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def search_clicked(self):
-        print('Hello World!!')
-        print(self.user_input.text())
+        current_word = self.user_input.text()
+        current_meanings = gather.Translate(current_word)
 
+        # self.terminal_output.setText(current_meanings)
+        if current_meanings:
+            with open(wordlist_address_windows, 'a+', encoding='utf-8') as file:
+                # Store In a FILE & Show in the Box
+                self.terminal_output.setText(current_word.capitalize() + ' :' + '\n') # Show WORD
+                file.writelines(current_word.capitalize() + ' :' + '\n') # Write WORD
+
+                for this_mean in current_meanings: # Write & Show MEANINGS
+                    my_string = '||\t' + this_mean + '\n'
+                    self.terminal_output.append(my_string.strip())
+                    file.writelines(my_string)
+                    # file.writelines('|| \t' + this_mean + '\n')
+
+
+                self.terminal_output.append('|-----------------------------------------------------------\n\n')
+                file.writelines('|-----------------------------------------------------------\n\n')
+
+                existing_words.append(current_word.strip().capitalize()) # Add to Existing List to avoid duplication
+                file.flush()
 
 
     def retranslateUi(self, MainWindow):
@@ -72,6 +94,7 @@ class Ui_MainWindow(object):
 
 
 if __name__ == "__main__":
+    print('start')
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
@@ -79,3 +102,4 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
