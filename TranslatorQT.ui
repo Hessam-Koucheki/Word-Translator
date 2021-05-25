@@ -57,6 +57,19 @@
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="clear_button">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>600</y>
+      <width>93</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ClearFile</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -85,6 +98,22 @@
     <hint type="destinationlabel">
      <x>235</x>
      <y>641</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clear_button</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showFullScreen()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>396</x>
+     <y>641</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>226</x>
+     <y>373</y>
     </hint>
    </hints>
   </connection>
