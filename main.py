@@ -1,4 +1,6 @@
-import gather
+import Translate
+from PyQt5 import QtCore, QtWidgets
+
 from os import system
 wordlist_address = '/mnt/c/Users/Hessam/Desktop/WordLists.txt' # wsl format
 notepad_command = 'notepad.exe ' + r'C:\\Users\\Hessam\\Desktop\\WordLists.txt' # windows format
@@ -36,7 +38,7 @@ with open(wordlist_address, 'a+') as file:
             print(word_input.upper() + ' exists!!')
             continue
         # Request To TRANSLATE Word
-        meanings = gather.Translate(word_input)
+        meanings = Translate.Translate(word_input)
         if meanings:
             # Store In a FILE
             file.writelines(word_input.capitalize() + ' :' + '\n') # Write WORD
