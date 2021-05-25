@@ -84,6 +84,8 @@ class Ui_MainWindow(object):
 
                 existing_words.append(current_word.strip().capitalize()) # Add to Existing List to avoid duplication
                 file.flush()
+        self.user_input.clear()
+        self.user_input.setFocus()
 
 
     def retranslateUi(self, MainWindow):
@@ -93,7 +95,6 @@ class Ui_MainWindow(object):
 
 
 if __name__ == "__main__":
-    print('start')
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
